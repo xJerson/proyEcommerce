@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = J:\PROYECTO POO CLASES\ProyFinalDESWB\ProyFinalDESWB
 build_property._RazorSourceGeneratorDebug = 
 
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Cliente/ListadoClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxMaXN0YWRvQ2xpZW50ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

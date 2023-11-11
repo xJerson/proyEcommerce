@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProyFinalDESWB.Models.Cliente>
+
+@{
+    ViewData["Title"] = "ListadoClientes";
+}
+
+<h1>ListadoClientes</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cod_cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombres_completo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dniruc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipocli)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cod_cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombres_completo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dniruc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipocli)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
