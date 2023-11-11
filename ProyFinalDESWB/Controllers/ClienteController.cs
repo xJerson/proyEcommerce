@@ -25,7 +25,7 @@ namespace ProyFinalDESWB.Controllers
 
         public ActionResult ListadoClientes()
         {
-            var listado = listClientes();
+           var listado = listClientes();
             return View(listado);
         }
         public List<Cliente> listClientes()
