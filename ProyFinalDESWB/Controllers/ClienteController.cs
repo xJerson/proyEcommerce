@@ -4,6 +4,7 @@ using ProyFinalDESWB.DAO;
 using ProyFinalDESWB.Models;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ProyFinalDESWB.Controllers
 {
@@ -12,6 +13,7 @@ namespace ProyFinalDESWB.Controllers
     public class ClienteController : Controller
     {
         private readonly ClienteDAO dao;
+        
 
         public ClienteController(ClienteDAO _dao)
         {
@@ -23,7 +25,13 @@ namespace ProyFinalDESWB.Controllers
 
         public ActionResult ListadoClientes()
         {
-           var listado = dao.ListadoClientes();
+            ViewBag.Tipos = new SelectList(
+             dao.ListadoTipos(),
+             "cod_tipocli",
+             "nom_tipocli"
+             );
+
+            var listado = dao.ListadoClientes();
             return View(listado);
         }
    
