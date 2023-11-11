@@ -54,6 +54,34 @@ namespace ProyFinalDESWB.DAO
 
         }
 
+        public List<tipos> ListadoTipos()
+
+        {
+            List<tipos> lista = new List<tipos>();
+
+            SqlDataReader dr = SqlHelper.ExecuteReader(
+
+                        cad_conex, "listTipos");
+
+            while (dr.Read())
+
+            {
+                lista.Add(new tipos
+
+                {
+                    cod_tipocli = dr.GetInt32(0),
+
+                    nom_tipocli = dr.GetString(1),
+
+                });
+
+            }
+
+            dr.Close();
+
+            return lista;
+
+        }
 
 
     }

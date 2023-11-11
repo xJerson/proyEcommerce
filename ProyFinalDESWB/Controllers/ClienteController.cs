@@ -11,56 +11,22 @@ namespace ProyFinalDESWB.Controllers
          
     public class ClienteController : Controller
     {
+        private readonly ClienteDAO dao;
 
-        private readonly IConfiguration configuracion;
-
-        private string cad_conex = "";
-        public ClienteController(IConfiguration _config)
+        public ClienteController(ClienteDAO _dao)
         {
-            configuracion = _config;
-            cad_conex = configuracion.GetConnectionString("cn1");
+            dao = _dao;
         }
+
 
         // GET: ClienteController
 
         public ActionResult ListadoClientes()
         {
-           var listado = listClientes();
+           var listado = dao.ListadoClientes();
             return View(listado);
         }
-        public List<Cliente> listClientes()
-
-        {
-            List<Cliente> lista = new List<Cliente>();
-
-            SqlDataReader dr = SqlHelper.ExecuteReader(
-
-                        cad_conex, "listCliente");
-
-            while (dr.Read())
-
-            {
-                lista.Add(new Cliente
-
-                {
-                    cod_cliente = dr.GetString(0),
-
-                    nombres_completo = dr.GetString(1),
-
-                    dniruc = dr.GetString(2),
-
-                    direccion = dr.GetString(3),
-                    correo = dr.GetString(4),
-                    tipocli = dr.GetInt32(5)
-                });
-
-            }
-
-            dr.Close();
-
-            return lista;
-
-        }
+   
 
     
 
