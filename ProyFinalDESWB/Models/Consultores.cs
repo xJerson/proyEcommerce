@@ -8,5 +8,8 @@
         public string dni { get; set; }
         public string correo { get; set; }
         public int codespecialidad { get; set; }
+
+        //NOMBRE DE LA ESPECIALIDAD TIPO STRING
+        public string nomespecialidad { get; set; }
     }
 }
