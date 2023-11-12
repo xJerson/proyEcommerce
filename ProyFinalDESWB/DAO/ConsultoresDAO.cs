@@ -20,7 +20,7 @@ namespace ProyFinalDESWB.DAO
 
             SqlDataReader dr = SqlHelper.ExecuteReader(cad_conex, "SP_LISTAR_ESPECIALIDAD");
 
-            while(dr.Read())
+            while (dr.Read())
             {
                 listado.Add(new Especialidad
                 {
@@ -38,7 +38,7 @@ namespace ProyFinalDESWB.DAO
 
             SqlDataReader dr = SqlHelper.ExecuteReader(cad_conex, "SP_LISTAR_CONSULTOR");
 
-            while(dr.Read())
+            while (dr.Read())
             {
                 listado.Add(new Consultores
                 {
@@ -56,6 +56,5 @@ namespace ProyFinalDESWB.DAO
 
         }
 
-        public 
     }
 }

@@ -103,6 +103,25 @@ namespace ProyFinalDESWB.DAO
             return mensaje;
         }
 
+        public string EditCliente(Cliente obj)
+        {
+            string mensaje = "";
+            try
+            {
+                SqlHelper.ExecuteNonQuery(cad_conex, "SP_ACTUALIZAR_CLIENTE",
+                   obj.nombres_completo, obj.dniruc,
+                    obj.direccion, obj.correo, obj.tipocli, obj.cod_cliente);
+                //
+                mensaje = $"El Cliente {obj.nombres_completo} " +
+                           "Fue Editado correctamente";
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            //
+            return mensaje;
+        }
 
     }
 }

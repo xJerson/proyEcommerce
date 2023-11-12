@@ -5,6 +5,7 @@ using ProyFinalDESWB.Models;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace ProyFinalDESWB.Controllers
 {
@@ -84,24 +85,41 @@ namespace ProyFinalDESWB.Controllers
         }
 
         // GET: ClienteController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditCliente(string id)
         {
-            return View();
+            Cliente buscar = dao.ListadoClientes().Find(c => c.cod_cliente.Equals(id));
+           
+            ViewBag.Tipos = new SelectList(
+         dao.ListadoTipos(),
+         "cod_tipocli",
+         "nom_tipocli"
+
+         );
+
+            return View(buscar);
         }
 
         // POST: ClienteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult EditCliente(string id, Cliente objc)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid == true)
+                    ViewBag.Mensaje = dao.EditCliente(objc);
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Mensaje = ex.Message;
             }
+          ViewBag.Tipos = new SelectList(
+          dao.ListadoTipos(),
+          "cod_tipocli",
+          "nom_tipocli"
+
+      );
+            return View(objc);
         }
 
         // GET: ClienteController/Delete/5

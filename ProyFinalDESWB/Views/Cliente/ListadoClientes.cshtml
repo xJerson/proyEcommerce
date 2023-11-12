@@ -83,9 +83,9 @@
                 @Html.DisplayFor(modelItem => item.tipocli)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit",null ,null ,new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Detalle", "Details",null ,null ,new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "Delete", null ,null ,new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Editar", "EditCliente",new { id = item.cod_cliente } ,new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Detalle", "Details",null ,null,new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "Delete", null,null ,new { @class = "btn btn-danger" })
             </td>
         </tr>
 }
@@ -169,7 +169,7 @@
             {
                 text: 'Registrar Cliente',
                 action: function (e, dt, node, config) {
-                    window.location.href = '/citas';
+                    window.location.href = '@Url.Action("GrabarCliente", "cliente")';
                 },
                 className: 'btn btn-custom'
             },
