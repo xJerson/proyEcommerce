@@ -61,7 +61,7 @@ namespace ProyFinalDESWB.DAO
 
             SqlDataReader dr = SqlHelper.ExecuteReader(
 
-                        cad_conex, "listTipos");
+                        cad_conex, "SP_LISTAR_TIPO_CLIENTE");
 
             while (dr.Read())
 
@@ -81,6 +81,26 @@ namespace ProyFinalDESWB.DAO
 
             return lista;
 
+        }
+
+        public string GrabarCliente(GrabarCliente obj)
+        {
+            string mensaje = "";
+            try
+            {
+                SqlHelper.ExecuteNonQuery(cad_conex, "SP_REGISTRAR_CLIENTE",
+                   obj.nombres_completo, obj.dniruc,
+                    obj.direccion, obj.correo,obj.tipocli);
+                //
+                mensaje = $"El Cliente {obj.nombres_completo} " +
+                           "fue registrado correctamente";
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            //
+            return mensaje;
         }
 
 

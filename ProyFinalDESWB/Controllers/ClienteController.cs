@@ -43,24 +43,44 @@ namespace ProyFinalDESWB.Controllers
         }
 
         // GET: ClienteController/Create
-        public ActionResult Create()
+        public ActionResult GrabarCliente()
         {
-            return View();
+            GrabarCliente nuevo = new GrabarCliente();
+           
+            ViewBag.Tipos = new SelectList(
+                dao.ListadoTipos(),
+                "cod_tipocli",
+                "nom_tipocli"
+
+                );
+            
+
+            return View(nuevo);
         }
 
         // POST: ClienteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult GrabarCliente(GrabarCliente nuevo)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid == true)
+                    ViewBag.Mensaje = dao.GrabarCliente(nuevo);
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Mensaje = ex.Message;
             }
+
+            ViewBag.Tipos = new SelectList(
+             dao.ListadoTipos(),
+             "cod_tipocli",
+             "nom_tipocli"
+
+             );
+
+            return View(nuevo);
         }
 
         // GET: ClienteController/Edit/5

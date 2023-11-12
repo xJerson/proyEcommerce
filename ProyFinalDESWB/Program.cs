@@ -27,7 +27,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=cliente}/{action=ListadoClientes}/{id?}");
+    pattern: "{controller=cliente}/{action=GrabarCliente}/{id?}");
 
 /*
 app.MapControllerRoute(
