@@ -135,13 +135,29 @@
             <i class='bx bx-menu'></i>
             <span class="text">Drop Down Sidebar</span>
         </div>
-        <div class="container">
+        <div class="content">
             @RenderBody()
         </div>
     </section>
-
+    <footer>
+        <!-- Contenido de tu footer (puede estar vacío) -->
+    </footer>   
     <script src="js/script.js"></script>
 
 </body>
+<style>
+    .content {
+        min-height: 100vh;
+        padding-bottom: 100px; /* Ajusta según la altura de tu footer */
+    }
 
+    footer {
+        background-color: #f0f0f0;
+        padding: 20px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+</style>
 </html>

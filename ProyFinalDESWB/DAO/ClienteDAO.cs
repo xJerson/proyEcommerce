@@ -27,7 +27,7 @@ namespace ProyFinalDESWB.DAO
 
             SqlDataReader dr = SqlHelper.ExecuteReader(
 
-                        cad_conex, "listCliente");
+                        cad_conex, "SP_LISTAR_CLIENTE");
 
             while (dr.Read())
 
@@ -43,7 +43,7 @@ namespace ProyFinalDESWB.DAO
 
                     direccion = dr.GetString(3),
                     correo = dr.GetString(4),
-                    tipocli = dr.GetInt32(5)
+                    tipocli = dr.GetString(5)
                 });
 
             }

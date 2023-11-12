@@ -25,11 +25,7 @@ namespace ProyFinalDESWB.Controllers
 
         public ActionResult ListadoClientes()
         {
-            ViewBag.Tipos = new SelectList(
-             dao.ListadoTipos(),
-             "cod_tipocli",
-             "nom_tipocli"
-             );
+            
 
             var listado = dao.ListadoClientes();
             return View(listado);
