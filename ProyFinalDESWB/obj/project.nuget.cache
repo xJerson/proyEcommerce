@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "S1qIYeFYTApCHsihbUCCBFjNPot7nKoWwYIGMsbjjsbhJv6D2ypRENI5WDUiqByIIL/oLRFcs4R12FTXrT4C9g==",
+=======
+  "dgSpecHash": "VCvpWyNoAQEsG7p7Ncm4hbS0WJQNMjsFsYtTgvaOKVtOuoAJgBscaJpq1sK6HlCM8Z8X9GYBjm0IAKeL3uSiUw==",
+>>>>>>> main
   "success": true,
   "projectFilePath": "J:\\PROYECTO POO CLASES\\ProyFinalDESWB\\ProyFinalDESWB\\ProyFinalDESWB.csproj",
   "expectedPackageFiles": [
