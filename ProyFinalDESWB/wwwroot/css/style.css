@@ -6,9 +6,11 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-body{
-  overflow: auto;
+body {
+    overflow-x: hidden; /* Evitar desplazamiento horizontal */
+    overflow-y: auto; /* Permitir desplazamiento vertical si es necesario */
 }
+
 .sidebar{
   position: fixed;
   top: 0;
@@ -243,29 +245,37 @@ body{
   font-weight: 600;
 }
 
-@media screen and (max-width: 400px){
-  .sidebar{
-    width: 240px;
-  }
-  .sidebar.close{
-    width: 78px;
-  }
-  .sidebar .profile-details{
-    width: 240px;
-  }
-  .sidebar.close .profile-details{
-    background: none;
-  }
-  .sidebar.close .profile-details{
-    width: 78px;
-  }
-  .home-section{
-    left: 240px;
-    width: calc(100% - 240px);
-  }
-  .sidebar.close ~ .home-section{
-    left: 78px;
-    width: calc(100% - 78px);
-  }
+@media screen and (max-width: 400px) {
+    .sidebar {
+        width: 240px;
+    }
 
+        .sidebar.close {
+            width: 78px;
+        }
 
+        .sidebar .profile-details {
+            width: 240px;
+        }
+
+        .sidebar.close .profile-details {
+            background: none;
+        }
+
+        .sidebar.close .profile-details {
+            width: 78px;
+        }
+
+    .home-section {
+        left: 240px;
+        width: calc(100% - 240px);
+    }
+
+    .sidebar.close ~ .home-section {
+        left: 78px;
+        width: calc(100% - 78px);
+    }
+}
+.content {
+    background: #E4E9F7;
+}

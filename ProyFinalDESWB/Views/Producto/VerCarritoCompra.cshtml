@@ -1,0 +1,277 @@
+﻿@model IEnumerable<ProyFinalDESWB.Models.CarritoModel>
+
+@{
+    ViewData["Title"] = "VerCarritoCompra";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Compra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        function updateQuantity(event) {
+            event.preventDefault();
+
+            var button = event.submitter;
+            var container = button.closest('.input-group');
+            var quantityInput = container.querySelector('.form-control');
+
+            if (button.value === 'add') {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            } else if (button.value === 'subtract' && parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+
+            event.target.submit();
+        }
+
+    </script>
+
+</head>
+<body>
+
+<h1>VerCarritoCompra</h1>
+
+  
+
+
+<p>
+    <a asp-action="ListadoProductos" class="btn btn-warning">Seguir Comprando</a>
+</p>
+
+<div style="display:flex;">
+
+<div style="margin-left:40px;"> 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Importe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fotopro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+  
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+
+           <td>
+                                <form asp-action="ActualizarAgregarAlCarrito" method="post" onsubmit="updateQuantity(event)">
+                                    <input type="hidden" name="id" value="@item.Codigo" />
+                                    <div class="cart-item" style="padding:1px;">
+                                        <div class="input-group number-spinner">
+                                            <button id="phone-minus-@item.Codigo" class="btn btn-def" type="submit" name="action" value="subtract" @(item.Cantidad <= 1 ? "disabled" : "")>
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+
+
+                                            <input id="phone-number-@item.Codigo" name="cantidad" type="number" min="1" class="form-control text-center" value="@item.Cantidad">
+                                            <button id="phone-plus-@item.Codigo" class="btn btn-def" type="submit" name="action" value="add" @(item.Cantidad >= item.stock ? "disabled" : "")>
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </form>
+
+            </td>
+            <td>
+                   @Html.DisplayFor(modelItem => item.Importe)
+            
+            </td>
+            <td>
+                    @if (item.fotopro != null)
+                    {
+                        <img src="@Url.Content(item.fotopro)" alt="@item.fotopro" style="width:80px; height:80px;" />
+                    }
+                    else
+                    {
+                        <img src="~/Fotos/imgpredeterminado.png" alt="@item.fotopro" style="width:80px; height:80px;" />
+                    }
+
+            </td>
+                <td>
+
+                    <div style="display: flex; text-align: center;">
+
+                      
+                        <form asp-action="EliminarProductoCarrito"
+                              asp-route-codigo="@item.Codigo"
+                              method="post">
+
+                            <button type="submit"
+                                    class="btn btn-danger"
+                                    onclick="return confirm('Seguro de Eliminar El Producto?')">
+                                Eliminar
+                            </button>
+
+
+                        </form>
+                    </div>
+
+                </td>
+
+ 
+        </tr>
+}
+    </tbody>
+    
+</table>
+</div>
+<br />
+
+
+        <div class="producto-item "  style="height:200px;margin-left:140px;width:300px;padding:20px;">
+            <p>Productos(<strong>@ViewBag.Cantidad</strong>) </p>
+            <p>Total a Pagar: <strong >S/ @ViewBag.total</strong></p>
+           
+            <a asp-action="PagarCarritoCompra" class="product-grid__btn btn-default" data-btn-action="add-btn-cart">Continuar Compra</a>
+        </div>
+    </div>
+
+   </body>
+
+<style>
+
+
+
+
+    .cart-item .remove-item {
+        width: 25px !important;
+    }
+
+    .cart-item {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+    }
+
+
+
+    .cart-item .form-control {
+        background-color: #F6F5FA;
+        border: none;
+        width: 65px;
+        border-radius: 10px !important;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    .input-group {
+        width: unset;
+        flex-wrap: nowrap;
+    }
+    .btn-def {
+        background-color: #fff;
+    }
+
+    .input-group {
+        width: unset;
+        flex-wrap: nowrap;
+    }
+
+    :root {
+        --color1: #135337;
+        --color2: #9CCB9E;
+        --color3: #30303F;
+        --fondo: #F5F7F9;
+        --border: #C9C6C6;
+    }
+
+    .producto-item {
+        background-color: #fff;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .product-grid__btn {
+        margin-top: 20px;
+    }
+
+    .btn-default,
+    .btn-border,
+    .btn-primary {
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+        outline: 0;
+        display: inline-block;
+        border-radius: 25px;
+        cursor: pointer;
+        padding: 0 20px;
+        text-decoration: none;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .btn-default {
+        background-color: var(--color2);
+        color: var(--color1);
+    }
+
+        .btn-default:hover {
+            background-color: var(--color1);
+            color: #fff;
+        }
+
+
+    .btn-border {
+        border: 2px solid var(--color1);
+        color: var(--color1);
+        background-color: transparent;
+    }
+
+        .btn-border:hover {
+            background-color: var(--color2);
+            border-color: var(--color2);
+        }
+
+    .btn-primary {
+        background-color: var(--color1);
+        color: #fff;
+    }
+</style>
+   </html>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Mensaje"]
+    </div>
+}

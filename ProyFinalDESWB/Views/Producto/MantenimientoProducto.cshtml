@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ProyFinalDESWB.Models.Producto>
+
+
+
+@{
+   
+    ViewData["Title"] = "MantenimientoProducto";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<h1>MantenimientoProducto</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.disponibilidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.animal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipocomi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fotopro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+               S/ @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.disponibilidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.animal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipocomi)
+            </td>
+            <td>
+                    @if (item.fotopro != null)
+                    {
+                        <img src="@Url.Content(item.fotopro)" alt="@item.fotopro" style="width:80px; height:80px;" />
+                    }
+                    else
+                    {
+                        <img src="~/Fotos/imgpredeterminado.png" alt="@item.fotopro" style="width:80px; height:80px;" />
+                    }
+
+                    
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    <form asp-action="DeleteProducto"
+                          asp-route-codigo="@item.codigo"
+                          method="post">
+                       
+                            <button type="submit"
+                                    class="btn btn-danger"
+                                    onclick="return confirm('Seguro de Eliminar al Producto?')">
+                                Eliminar
+                            </button>
+                    </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    
+@if (!string.IsNullOrEmpty(TempData["Mensaje"] as string))
+{
+    <div class="alert alert-info" role="alert">
+        <p>@TempData["Mensaje"]</p>
+    </div>
+}
+
+
+

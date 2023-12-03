@@ -1,0 +1,100 @@
+﻿@model ProyFinalDESWB.Models.Producto
+
+@{
+    ViewData["Title"] = "AgregarAlCarrito";
+}
+
+<h1>AgregarAlCarrito</h1>
+
+<div class="container">
+    <h4>Producto</h4>
+    <hr />
+    <dl class="row">
+            
+     
+        <dt class = "col-sm-2">
+            Producto
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            Precio
+        </dt>
+        <dd class = "col-sm-10">
+          S/  @Html.DisplayFor(model => model.precio)
+        </dd>
+        <dt class = "col-sm-2">
+            Stock
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+        <dt class = "col-sm-2">
+            Disponible
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.disponibilidad)
+        </dd>
+        <dt class = "col-sm-2">
+            Tipo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.animal)
+        </dd>
+        <dt class = "col-sm-2">
+            Descripcion
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tipocomi)
+        </dd>
+
+        <dd class = "col-sm-10">
+            
+
+            @if (Model.fotopro != null)
+            {
+                <img src="@Url.Content(Model.fotopro)" alt="@Model.fotopro" style="width:250;height:300px;" />
+            }
+            else
+            {
+                <img src="~/Fotos/imgpredeterminado.png" alt="@Model.fotopro" style="width:80px; height:80px;" />
+            }
+        </dd>
+    
+    </dl>
+</div>
+
+<!-- Formulario de MVC para agregar el producto al carrito de compra -->
+@using (Html.BeginForm())
+
+{
+
+    <div>
+
+        @Html.Hidden("id", Model.codigo)
+        Ingrese Cantidad: @Html.TextBox("cantidad","1")
+        <button type="submit" @if (Model.ProductoAgregado)
+        {
+            <text>disabled</text>
+        }
+                                        class="btn btn-primary">Agregar Producto</button> |
+
+        @Html.ActionLink("Ver Carrito", "VerCarritoCompra",null,null,
+    new {@class="btn btn-success"}) |
+        <a asp-action="ListadoProductos" class="btn btn-warning">Seguir Comprando</a>
+
+
+
+    </div>
+
+}
+<br />
+
+
+@if (!string.IsNullOrEmpty(ViewBag.Mensaje))
+{
+    <div class="alert alert-success" role="alert">
+        <p>@ViewBag.Mensaje</p>
+    </div>
+}

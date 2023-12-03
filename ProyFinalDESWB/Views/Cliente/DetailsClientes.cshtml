@@ -1,0 +1,65 @@
+﻿@model ProyFinalDESWB.Models.Cliente
+
+@{
+    ViewData["Title"] = "DetailsClientes";
+}
+<style>
+    .img {
+        background-color: #212529;
+    }
+</style>
+
+<div>
+    <h1 class="mt-3 text-center">Detalle del Cliente</h1>
+
+    <hr />
+    <dl class="container" style="margin-left :40%;">
+
+        <dd class="col-sm-10">
+            <!-- Utiliza la etiqueta img para mostrar la imagen desde wwwroot/imagenes -->
+            <img src="~/imagenes/clientelogo.png" alt="Imagen del Cliente" class="img-fluid" width="250px" />
+        </dd>
+
+        <dt class="col-sm-10">
+            Codigo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cod_cliente)
+        </dd>
+        <dt class = "col-sm-2">
+            Nombres Completos
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nombres_completo)
+        </dd>
+        <dt class = "col-sm-2">
+            DNI/RUC
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dniruc)
+        </dd>
+        <dt class = "col-sm-2">
+            Direccion
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+        <dt class = "col-sm-2">
+            Correo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+        <dt class = "col-sm-2">
+            Tipo de Cliente
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tipocli)
+        </dd>
+    </dl>
+</div>
+<div class="text-center">
+    <a asp-action="EditCliente" asp-route-id="@Model.cod_cliente" class="btn btn-primary">Editar</a> |
+    <a asp-action="ListadoClientes" class="btn btn-success">Regresar al Listado</a>
+</div>
+

@@ -1,0 +1,190 @@
+﻿@model IEnumerable<ProyFinalDESWB.Models.Producto>
+  
+@{
+    ViewData["Title"] = "ListadoProductos";
+}
+    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listado Productos</title>
+    <link rel="stylesheet" href="@Url.Content("~/css/main.css")">
+ 
+    
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+    
+
+</head>
+<body>
+    <header>
+        <nav>
+            
+            <div style="float: right;">
+               
+               
+                <a asp-action="VerCarritoCompra" class="btn btn-warning"><span><i class="fas fa-shopping-cart"></i></span></a>
+            </div>
+        </nav>
+    </header>
+
+
+    <h1 align="center">Listado Productos</h1>
+
+
+    <div class="container mt-3" style="text-align: center;">
+        <form asp-action="ListadoProductos" method="post">
+            <div class="input-group mb-5 mt-5" style="width: 30%; margin-left:470px;">
+                <input type="text" name="buscar" class="form-control" placeholder="Buscar por tipo y descripcion">
+                <button type="submit" class="btn btn-success">Buscar</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <div class="product-items">
+       
+            
+        
+        @foreach (var item in Model)
+        {
+            <div class="product">
+                <div class="product-content">
+                    <div class="product-img">
+                        <div class="product-img">
+                            <div class="product-img">
+                                @if (item.fotopro != null)
+                                {
+                                    <img src="@Url.Content(item.fotopro)" class="img-fluid" style="height:220px;width:120px; margin-left:40px"  />
+                                }
+                                else
+                                {
+                                    <img src="~/Fotos/imgpredeterminado.png" class="img-fluid" width="150px" />
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="product-btns mt-5">
+                       
+
+                        @if (item.stock > 0)
+                        {
+                            <p>
+                                @if (item.ProductoAgregado)
+                                {
+                                    
+                                    
+                                    <a class="btn-cart">
+                                        Agregar al Carro
+                                        <span><i class="fas fa-plus"></i></span>
+                                    </a>
+                                  
+                                }
+                                else
+                                {
+                                   
+                                    <a asp-action="AgregarAlCarrito" asp-route-id="@item.codigo" class="btn-cart">
+                                        Agregar al Carro
+                                        <span><i class="fas fa-plus"></i></span>
+                                    </a>
+                                }
+                            </p>
+                        }
+
+
+
+                        @if (item.stock > 0)
+                        {
+                        <div>
+                                <a asp-action="PagarCarritoCompra" class="btn-buy">
+                            buy now
+                            <span><i class="fas fa-shopping-cart"></i></span>
+                        </a>
+                             
+                        </div>
+                        }
+
+                        else
+                        {
+                            <div>
+                                <a  class="btn-buy">
+                                    No Disponible
+                                    <span><i class="fas fa-shopping-cart"></i></span>
+                                </a>
+
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-info-top">
+                       
+                        <div class="sm-title">@Html.DisplayFor(modelItem => item.animal)</div>
+                    </div>
+
+
+                    <div class="product-info-top">
+                        <div class="sm-title">@Html.DisplayFor(modelItem => item.descripcion)</div>
+                    </div>
+                    <div class="product-info-top">
+                        
+                        <div class="sm-title">S/ @Html.DisplayFor(modelItem => item.precio)</div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+
+               
+
+            
+        }
+        </div>
+   
+
+    <!-- Agrega aquí tus scripts al final del cuerpo si es necesario -->
+</body>
+<style>
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .product-info-top {
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .label-title {
+        font-weight: bold;
+        margin-bottom: 2px;
+    }
+
+    .sm-title {
+        margin-top: 2px;
+    }
+
+    .product-btns a {
+        text-decoration: none;
+        text-align : center;
+       
+    }
+
+
+    
+</style>
+</html>
+
+
+

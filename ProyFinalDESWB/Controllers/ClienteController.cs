@@ -31,16 +31,26 @@ namespace ProyFinalDESWB.Controllers
             var listado = dao.ListadoClientes();
             return View(listado);
         }
-   
-
-    
 
 
-
-    // GET: ClienteController/Details/5
-    public ActionResult Details(int id)
+        public ActionResult DetailsClientes(string id)
         {
-            return View();
+            if (string.IsNullOrEmpty(id))
+            {
+                // Manejo de error o redirección si el id es nulo o vacío
+                return RedirectToAction("ListadoClientes");
+            }
+
+            Cliente cliente = dao.ListadoClientes().
+                                    Find(c => c.cod_cliente.Equals(id));
+
+            if (cliente == null)
+            {
+                // Manejo de error o redirección si no se encuentra el cliente
+                return RedirectToAction("ListadoClientes");
+            }
+
+            return View(cliente);
         }
 
         // GET: ClienteController/Create
@@ -87,7 +97,8 @@ namespace ProyFinalDESWB.Controllers
         // GET: ClienteController/Edit/5
         public ActionResult EditCliente(string id)
         {
-            Cliente buscar = dao.ListadoClientes().Find(c => c.cod_cliente.Equals(id));
+            Cliente? buscar = dao.ListadoClientes().
+                                    Find(c => c.cod_cliente.Equals(id));
            
             ViewBag.Tipos = new SelectList(
          dao.ListadoTipos(),
@@ -122,25 +133,26 @@ namespace ProyFinalDESWB.Controllers
             return View(objc);
         }
 
-        // GET: ClienteController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+       
 
-        // POST: ClienteController/Delete/5
+        // Cambia el nombre del parámetro de id a cod_cliente
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteCliente(string cod_cliente)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid == true)
+
+                    TempData["Mensaje"] = dao.EliCliente(cod_cliente);
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                TempData["Mensaje"] = ex.Message;
             }
+
+            return RedirectToAction("ListadoClientes");
         }
+
     }
 }

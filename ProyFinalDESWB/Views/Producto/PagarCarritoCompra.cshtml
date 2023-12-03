@@ -1,0 +1,137 @@
+﻿@model IEnumerable<ProyFinalDESWB.Models.CarritoModel>
+
+@{
+    Layout = null;
+    ViewData["Title"] = "PagarCarritoCompra";
+    decimal TOTAL = Model.Sum(p => p.Importe);
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="@Url.Content("~/css/payment3.css")">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+    <script src=@Url.Content("~/js/payment3.js")></script>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div style="margin-left:80px;">
+        <h1 class="mt-5">Pagar Carro de Compra</h1>
+
+        <p>
+            <a asp-action="VerCarritoCompra" class="btn btn-warning">Ver Carrito</a> |
+            <a asp-action="ListadoProductos" class="btn btn-success">Ir al Inicio</a>
+        </p>
+
+    </div>
+
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-11">
+                <div class="card card0 rounded-0">
+                    <div class="row">
+                        <div class="col-md-5 d-md-block d-none p-0 box">
+                            <div class="card rounded-0 border-0 card1" id="bill">
+                                <h3 id="heading1">Payment Summary</h3>
+
+
+                                @foreach (var item in Model)
+                                {
+                                    <div class="row">
+                                        <div class="col-lg-7 col-8 mt-4 line pl-4">
+                                            <h2 class="bill-head">@Html.DisplayFor(modelItem => item.Nombre)</h2>
+                                            <small class="bill-date"> @Html.DisplayFor(modelItem => item.Importe)</small>
+                                        </div>
+                                        <div class="col-lg-5 col-4 mt-4">
+                                            @if (item.fotopro != null)
+                                            {
+                                                <img src="@Url.Content(item.fotopro)" alt="@item.fotopro" style="width:80px; height:80px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Fotos/imgpredeterminado.png" alt="@item.fotopro" style="width:80px; height:80px;" />
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                <div class="row">
+                                    <div class="col-md-12 red-bg">
+                                        <p class="bill-date" id="total-label">Total Price</p>
+                                        <h2 class="bill-total" id="total">S/ @ViewBag.total </h2>
+                                        <small class="bill-date" id="total-label">Price includes all taxes</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7 col-sm-12 p-0 box">
+                            <div class="card rounded-0 border-0 card2" id="paypage">
+                                <div class="form-card">
+                                    <h2 id="heading2" class="text-danger">Forma de Pago</h2>
+                                    <form asp-action="PagarCarritoCompra" asp-route-tipo="tipo" asp-route-nomcard="nomcard" asp-route-nrocard="nrocard" asp-route-cvv="cvv" asp-route-fechexp="fechexp" method="post">
+
+                                        <!-- Agrega un campo oculto para almacenar el valor del tipo seleccionado -->
+                                        <input type="hidden" name="tipo" id="tipo" value="" required>
+
+                                    <div class="radio-group">
+                                            <div class='radio' data-value="credit" onclick="setTipo('credit')"><img src="https://i.imgur.com/28akQFX.jpg" width="200px" height="60px"></div>
+                                            <div class='radio' data-value="paypal" onclick="setTipo('paypal')"><img src="https://i.imgur.com/5QFsx7K.jpg" width="200px" height="60px"></div>
+                                        <br>
+                                    </div>
+                                    <label class="pay">Name on Card</label>
+                                        <input type="text" name="nomcard" placeholder="Ingresar Nombres Completos" required>
+                                    <div class="row">
+                                        <div class="col-8 col-md-6">
+                                            <label class="pay">Card Number</label>
+                                                <input type="text" name="nrocard" id="cr_no" placeholder="0000-0000-0000-0000" minlength="19" maxlength="19" required>
+                                        </div>
+                                        <div class="col-4 col-md-6">
+                                            <label class="pay">CVV</label>
+                                                <input type="password" name="cvv" placeholder="&#9679;&#9679;&#9679;" class="placeicon" minlength="3" maxlength="3" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="pay">Expiration Date</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                                <input type="text" name="fechexp" id="exp" placeholder="MM/YY" minlength="5" maxlength="5" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            
+                                                <button type="submit" class="btn btn-info placeicon">Realizar Pago &nbsp; &#xf178;</button>
+                                        </div>
+                                    </div>
+                                    </form>
+
+                                    <!-- Agrega este script para cambiar el valor del campo oculto cuando se hace clic en una opción del radio-group -->
+                                    <script>
+                                        function setTipo(value) {
+                                            document.getElementById("tipo").value = value;
+                                        }
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

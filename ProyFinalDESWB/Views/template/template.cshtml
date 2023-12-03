@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title> Drop Down Sidebar Menu | CodingLab </title>
+    <title>FOOD-ANIMA</title>
     <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -16,118 +16,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <style>
+        .submit-button {
+            background: none;
+            border: none;
+            color: white; /* Color original del texto */
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            text-decoration: none; /* Quitamos el subrayado */
+            font-size: 15px;
+            padding: 5px 0;
+            white-space: nowrap;
+            position: relative;
+            opacity: 0.6;
+            transition: color 0.3s ease, opacity 0.3s ease; /* Transición para el color del texto y la opacidad */
+        }
+
+            .submit-button:hover {
+                color: #fff; /* Cambia el color del texto al pasar el cursor */
+                opacity: 1; /* Hace que el botón sea completamente visible al pasar el cursor */
+            }
+    </style>
+
+
+
+
     <div class="sidebar close">
         <div class="logo-details">
             <i class='bx bxl-c-plus-plus'></i>
-            <span class="logo_name">CodingLab</span>
+            <span class="logo_name">FOOD-ANIMA</span>
         </div>
         <ul class="nav-links">
             <li>
-                <a href="#">
+                <a asp-controller="Producto" asp-action="ListadoProductos">
                     <i class='bx bx-grid-alt'></i>
-                    <span class="link_name">Dashboard</span>
+                    <span class="link_name">Inicio</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Category</a></li>
+                    <li><a class="link_name" href="#">Categorias</a></li>
                 </ul>
             </li>
             <li>
                 <div class="iocn-link">
                     <a href="#">
                         <i class='bx bx-collection'></i>
-                        <span class="link_name">Category</span>
+                        <span class="link_name">Categorias</span>
                     </a>
                     <i class='bx bxs-chevron-down arrow'></i>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Category</a></li>
-                    <li><a href="#">HTML & CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                    <li><a href="#">PHP & MySQL</a></li>
+
+                    <li><a class="link_name" href="#">Categorias</a></li>
+
+                    <li>
+                        <form asp-controller="Producto" asp-action="ListadoProductos" method="post" style="display: inline;">
+                            <button type="submit" name="buscar" class="submit-button" value="Perro">Perro</button>
+                    
+                        </form>
+                    </li>
+                    <li>
+                        <form asp-controller="Producto" asp-action="ListadoProductos" method="post" style="display: inline;">
+                            <button type="submit" name="buscar" class="submit-button" value="Gato">Gato</button>
+
+                        </form>
+                    </li>
+                    <li>
+                        <form asp-controller="Producto" asp-action="ListadoProductos" method="post" style="display: inline;">
+                            <button type="submit" name="buscar" class="submit-button" value="Pajaros">Pajaros</button>
+
+                        </form>
+                    </li>
+                    <li>
+                        <form asp-controller="Producto" asp-action="ListadoProductos" method="post" style="display: inline;">
+                            <button type="submit" name="buscar" class="submit-button" value="Roedores">Roedores</button>
+
+                        </form>
+                    </li>
+                    <li>
+                        <form asp-controller="Producto" asp-action="ListadoProductos" method="post" style="display: inline;">
+                            <button type="submit" name="buscar" class="submit-button" value="Peces y Reptiles">Peces y Reptiles</button>
+
+                        </form>
+                    </li>
+                    <li>
+                        <form asp-controller="Producto" asp-action="ListadoProductos" method="post" style="display: inline;">
+                            <button type="submit" name="buscar" class="submit-button" value="Caballos">Caballos</button>
+
+                        </form>
+                    </li>
+                    <li>
+                        <form asp-controller="Producto" asp-action="ListadoProductos" method="post" style="display: inline;">
+                            <button type="submit" name="buscar" class="submit-button" value="Vacas">Vacas</button>
+
+                        </form>
+                    </li>
+                    <li>
+                        <form asp-controller="Producto" asp-action="ListadoProductos" method="post" style="display: inline;">
+                            <button type="submit" name="buscar" class="submit-button" value="Ovejas y Cabras">Ovejas y Cabras</button>
+
+                        </form>
+                    </li>
+
+
                 </ul>
             </li>
+           
             <li>
                 <div class="iocn-link">
                     <a href="#">
-                        <i class='bx bx-book-alt'></i>
-                        <span class="link_name">Posts</span>
+                        <i class='bx bx-cog'></i>
+                        <span class="link_name">Procesar</span>
                     </a>
                     <i class='bx bxs-chevron-down arrow'></i>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Posts</a></li>
-                    <li><a href="#">Web Design</a></li>
-                    <li><a href="#">Login Form</a></li>
-                    <li><a href="#">Card Design</a></li>
+                    <li><a class="link_name" href="#">Procesar</a></li>
+                    <li><a asp-controller="Producto" asp-action="MantenimientoProducto">Productos</a></li>
+                    <li><a asp-controller="Cliente" asp-action="ListadoClientes">Clientes</a></li>
+                    
+
+               <!--     <li><a href="#">Consultores</a></li>
+                    <li><a href="#">Empleados</a></li>   -->
                 </ul>
             </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="link_name">Analytics</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Analytics</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-line-chart'></i>
-                    <span class="link_name">Chart</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Chart</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="#">
-                        <i class='bx bx-plug'></i>
-                        <span class="link_name">Plugins</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Plugins</a></li>
-                    <li><a href="#">UI Face</a></li>
-                    <li><a href="#">Pigments</a></li>
-                    <li><a href="#">Box Icons</a></li>
-                </ul>
-            </li>
-            <li>
+
+         <!-- <li>
                 <a href="#">
                     <i class='bx bx-compass'></i>
-                    <span class="link_name">Explore</span>
+                    <span class="link_name">Catalogos</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Explore</a></li>
+                    <li><a class="link_name" href="#">Catalogos</a></li>
                 </ul>
-            </li>
-            <li>
+            </li> -->
+            <!--    <li>
                 <a href="#">
                     <i class='bx bx-history'></i>
-                    <span class="link_name">History</span>
+                    <span class="link_name">Informacion</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">History</a></li>
+                    <li><a class="link_name" href="#">Informacion</a></li>
                 </ul>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="link_name">Setting</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Setting</a></li>
-                </ul>
-            </li>
+            </li>  -->
+
             <li>
                 <div class="profile-details">
                     <div class="profile-content">
-                        <img src="image/profile.jpg" alt="profileImg">
+                        <img src="~/imagenes/Cibertec.png" alt="profileImg">
                     </div>
                     <div class="name-job">
-                        <div class="profile_name">Prem Shahi</div>
+                        <div class="profile_name">Cibertec</div>
                         <div class="job">Web Desginer</div>
                     </div>
                     <i class='bx bx-log-out'></i>
@@ -138,7 +177,7 @@
     <section class="home-section">
         <div class="home-content">
             <i class='bx bx-menu'></i>
-            <span class="text">Drop Down Sidebar</span>
+            <span class="text">Sistema Web Ecommerce</span>
         </div>
         <div class="content">
             @RenderBody()
@@ -149,6 +188,7 @@
         <!-- Contenido de tu footer (puede estar vacío) -->
     </footer>   
     <script src=@Url.Content("~/js/script.js")></script>
+ 
 
 </body>
 <style>

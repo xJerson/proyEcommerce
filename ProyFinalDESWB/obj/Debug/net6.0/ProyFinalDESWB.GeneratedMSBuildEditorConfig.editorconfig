@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = J:\PROYECTO POO CLASES\ProyFinalDESWB\ProyFinalDESWB
 build_property._RazorSourceGeneratorDebug = 
 
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Cliente/DetailsClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxEZXRhaWxzQ2xpZW50ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Cliente/EditCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxFZGl0Q2xpZW50ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,6 +38,34 @@ build_metadata.AdditionalFiles.CssScope =
 
 [J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Producto/AgregarAlCarrito.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cQWdyZWdhckFsQ2Fycml0by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Producto/GrabarProducto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cR3JhYmFyUHJvZHVjdG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Producto/ListadoProductos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cTGlzdGFkb1Byb2R1Y3Rvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Producto/MantenimientoProducto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cTWFudGVuaW1pZW50b1Byb2R1Y3RvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Producto/PagarCarritoCompra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cUGFnYXJDYXJyaXRvQ29tcHJhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Producto/PageSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cUGFnZVN1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Producto/VerCarritoCompra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cVmVyQ2Fycml0b0NvbXByYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [J:/PROYECTO POO CLASES/ProyFinalDESWB/ProyFinalDESWB/Views/Shared/Error.cshtml]

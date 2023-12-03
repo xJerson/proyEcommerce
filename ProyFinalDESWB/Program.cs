@@ -1,4 +1,6 @@
+
 using ProyFinalDESWB.DAO;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,9 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ClienteDAO>();
+builder.Services.AddScoped<ProductoDAO>();
 
+builder.Services.AddSession(
+    x => x.IdleTimeout = TimeSpan.FromMinutes(20));
 
 var app = builder.Build();
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -28,7 +34,8 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=cliente}/{action=GrabarCliente}/{id?}");
+   pattern: "{controller=producto}/{action=ListadoProductos}/{id?}");
+//pattern: "{controller=cliente}/{action=ListadoClientes}/{id?}");
 
 /*
 app.MapControllerRoute(
